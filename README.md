@@ -8,7 +8,7 @@ In my thesis, I estimate the **effect that oil prices have on the drilling and p
 
 All production data comes from Mexico's oil & gas regulator, the National Hidrocarbons Commission (CNH in spanish).
 
-# Acces to data
+# Access to data
 
 * [Oil production](https://drive.google.com/drive/folders/1YFoCM2lnXvKAeZQNZgLj0fYiOIkGW2qK?usp=sharing)
 
