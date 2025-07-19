@@ -10,10 +10,7 @@ All production data comes from Mexico's oil & gas regulator, the National Hidroc
 
 # Access to data
 
+Here's links to the data used in this project. It's all public access data, collected from the Mexican federal oil & gas commission (CNH).
+
 * [Production](https://drive.google.com/drive/folders/1YFoCM2lnXvKAeZQNZgLj0fYiOIkGW2qK?usp=sharing)
 * [Drilling](https://drive.google.com/drive/folders/13JIJ1LP_ds_Oac1uX1XQ9Mewj3oHajhf?usp=drive_link)
-
-
-
-
-
