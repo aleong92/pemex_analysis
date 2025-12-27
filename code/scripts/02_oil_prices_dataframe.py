@@ -6,7 +6,6 @@
 #####################################################################
 # Libraries
 import pandas as pd
-import numpy as np
 import os
 
 # Import price and cpi data and consolidate in single dataframe
