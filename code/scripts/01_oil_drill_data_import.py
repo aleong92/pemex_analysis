@@ -38,6 +38,10 @@ df = (
 # Assign column names
 df.rename(columns=CNH_MAP_NAMES, inplace=True)
 
+# Parse dates to the correct format
+df['fecha_inicio'] = pd.to_datetime(df['fecha_inicio'], format='%d/%m/%Y')
+df['fecha_fin'] = pd.to_datetime(df['fecha_fin'], format='%d/%m/%Y')
+
 # Initial well count
 print(f"""
       OIL WELLS DATABASE
