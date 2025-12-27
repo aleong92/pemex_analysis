@@ -52,3 +52,19 @@ CNH_MAP_NAMES = {
     'FECHA INICIO PERFORACIóN': 'fecha_inicio',
     'FECHA FIN PERFORACIóN': 'fecha_fin'
 }
+
+CNH_HC_TYPE = {
+    'ACEITE':1,
+    'ACEITE-GAS':1,
+    'ACEITE Y GAS':1,
+    'ACEITE SUPERLIGERO':1,
+    'ACEITE LIGERO':1,
+    'ACEITE NEGRO':1,
+    'GAS':0,
+    'GAS-CONDENSADO':0,
+    'CONDENSADO':0,
+    'GAS SECO':0,
+    'GAS HUMEDO':0,
+    'GAS Y CONDENSADO':0,
+    'NO IDENTIFICADO':0
+}
