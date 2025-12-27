@@ -61,4 +61,4 @@ print(f"""
 """)
 
 # Save dataframe
-df.to_csv(os.path.join("..", "..", "data", "oil_intermediate", "01_oil.csv"), sep=',', index=False)
+df.to_csv(os.path.join("..", "..", "data", "oil_intermediate", "01_oil_prod.csv"), sep=',', index=False)
