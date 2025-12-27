@@ -20,3 +20,35 @@ SIH_PROD_NAMES = {
     'Agua_(Mbd)': 'agua_mbd',
     'Condensado_(Mbd)': 'condensado_mbd'
 }
+
+CNH_MAP_DTYPES = {
+    'POZO': 'object',
+    'CAMPO': 'object',
+    'ENTIDAD': 'object',
+    'UBICACIóN': 'object',
+    'CLASIFICACIóN': 'object',
+    'ESTADO ACTUAL': 'object',
+    'TIPO DE HIDROCARBURO': 'object',
+    'FECHA INICIO DE PERFORACIóN': 'object',
+    'FECHA FIN PERFORACIóN': 'object',
+    'PROFUNDIDAD TOTAL': 'float64',
+    'PROFUNDIDAD VERTICAL': 'float64',
+    'TRAYECTORIA': 'object',
+    'DISPONIBLE': 'object'
+}
+
+CNH_MAP_NAMES = {
+    'POZO': 'nombre_pozo',
+    'CAMPO': 'campo',
+    'ENTIDAD': 'entidad',
+    'UBICACIóN': 'ubicacion',
+    'CLASIFICACIóN': 'clasificacion',
+    'ESTADO ACTUAL': 'edo_actual',
+    'TIPO DE HIDROCARBURO': 'tipo_hidrocarburo',
+    'PROFUNDIDAD TOTAL': 'prof_total',
+    'PROFUNDIDAD VERTICAL': 'prof_vertical',
+    'TRAYECTORIA': 'trayectoria',
+    'DISPONIBLE': 'disponible',
+    'FECHA INICIO PERFORACIóN': 'fecha_inicio',
+    'FECHA FIN PERFORACIóN': 'fecha_fin'
+}
