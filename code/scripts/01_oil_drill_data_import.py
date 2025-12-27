@@ -42,11 +42,15 @@ df.rename(columns=CNH_MAP_NAMES, inplace=True)
 df['fecha_inicio'] = pd.to_datetime(df['fecha_inicio'], format='%d/%m/%Y')
 df['fecha_fin'] = pd.to_datetime(df['fecha_fin'], format='%d/%m/%Y')
 
+# Drop duplicates
+df.drop_duplicates(subset=['nombre_pozo'], keep='last', inplace=True)
+
 # Initial well count
 print(f"""
       OIL WELLS DATABASE
       ------------------
 
+      Rows:       {len(df):>7,}
       Wells:      {df['nombre_pozo'].nunique():>7,}
 
 """)
