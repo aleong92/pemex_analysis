@@ -1,5 +1,5 @@
 #####################################################################
-# 01 - OIL PRODUCTION DATAFRAME
+# 01 - OIL PRICES DATA IMPORT PROCESS (4-MONTH WTI FUTURE PRICES)
 # Author: Álvaro León G.
 # Undergrad Thesis
 # ITAM
