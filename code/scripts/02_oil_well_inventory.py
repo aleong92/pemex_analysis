@@ -1,5 +1,5 @@
 #####################################################################
-# 02 - OIL PRODUCTION DATAFRAME
+# 02 - OIL WELL INVENTORY
 # Author: Álvaro León G.
 # Undergrad Thesis
 # ITAM
@@ -70,5 +70,8 @@ df = df.query("production_start >= '1970-01-01' and production_start < '2019-01-
 df = df.query("oil_well == 1")
 print(f"Oil wells:    {df['oil_well'].sum():,.0f}")
 
+# Identify preexistent wells
+df['preexistent_well'] = np.where(df['production_start'] < '2000-01-01', 1, 0)
+
 # Save dataframe
-df.to_csv(os.path.join("..", "..", "data", "oil_intermediate", "01_well_inventory.csv"), sep=',', index=False)
+df.to_csv(os.path.join("..", "..", "data", "oil_intermediate", "02_well_inventory.csv"), sep=',', index=False)
