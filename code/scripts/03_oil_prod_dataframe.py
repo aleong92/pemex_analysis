@@ -7,7 +7,6 @@
 # Libraries
 import pandas as pd
 import os
-import numpy as np
 
 # Import production data
 PATH = os.path.join('..', '..', 'data', 'oil_intermediate')
