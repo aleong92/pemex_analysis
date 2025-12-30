@@ -60,5 +60,8 @@ print(f"""
       Ends:       {(df['fecha'].dt.year).max():>7}
 """)
 
+# Drop duplicates based on well name and month
+df.drop_duplicates(subset=['nombre_pozo', 'fecha'], keep='first', inplace=True)
+
 # Save dataframe
 df.to_csv(os.path.join("..", "..", "data", "oil_intermediate", "01_oil_prod.csv"), sep=',', index=False)
