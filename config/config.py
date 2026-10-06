@@ -68,3 +68,23 @@ CNH_HC_TYPE = {
     'GAS Y CONDENSADO':0,
     'NO IDENTIFICADO':0
 }
+
+OP_BASIN = {
+    'Cuencas del Sureste':'Sureste',
+    'Burgos':'Burgos',
+    'Tampico-Misantla':'Tampico-Misantla',
+    'Veracruz':'Veracruz',
+    'Golfo de México Profundo':'Aguas Profundas'
+}
+
+OP_WELL_CAT = {
+    'Desarrollo':'Desarrollo',
+    'EXPLORACION':'Exploración'
+}
+
+OP_LOCATION = {
+    'Terrestre':'Terrestre',
+    'Aguas someras':'Maritima',
+    'Aguas ultraprofundas':'Maritima',
+    'Aguas profundas':'Maritima'
+}
