@@ -27,5 +27,9 @@ df = (
     )
 )
 
+# Create a spot price column for spot and future prices
+df['spot_price_201812_usd'] = (df['wti_spot_price'] / df['cpi_base_201812']) * 100
+df['f4m_price_201812_usd'] = (df['f4m_price'] / df['cpi_base_201812']) * 100
+
 # Save dataframe
 df.to_csv(os.path.join("..", "..", "data", "prices_final", "02_oil_prices.csv"), sep=',', index=False)
