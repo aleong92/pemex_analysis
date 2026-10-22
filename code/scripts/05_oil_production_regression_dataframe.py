@@ -53,6 +53,7 @@ df_reg['time_effect'] = ((pd.to_datetime(df_reg['fecha'], format='%Y-%m-%d').dt.
 
 # Save into csv file
 REG_COLUMNS = [
+    'fecha',
     'd1_log_prod_all',
     'd1_log_prod_y5',
     'd1_log_price',
