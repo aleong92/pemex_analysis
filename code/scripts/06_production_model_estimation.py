@@ -1,12 +1,11 @@
 #####################################################################
-# 05 - MODEL ESTIMATION (PRODUCTION)
+# 06 - MODEL ESTIMATION (PRODUCTION)
 # Author: Álvaro León G.
 # Undergrad Thesis
 # ITAM
 #####################################################################
 # Libraries
 import pandas as pd
-import numpy as np
 import os
 import statsmodels.api as sm
 
