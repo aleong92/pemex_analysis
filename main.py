@@ -20,8 +20,10 @@ SCRIPTS = [
     '01_oil_prices_wti_data_import.py',
     '01_oil_prices_cpi_data_import.py',
     '01_oil_prices_futures_4m_data_import.py',
-    '01_oil_prices_dataframe.py',
-    '01_oil_production_data_import.py'
+    '01_oil_production_data_import.py',
+    '01_oil_drilling_data_import.py',
+    '01_oil_well_inventory.py',
+    '02_oil_prices_dataframe.py'
 ]
 
 # Execute
