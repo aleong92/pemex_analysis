@@ -8,17 +8,19 @@
 import pandas as pd
 import os
 import sys
+from pathlib import Path
 
 # Append config to system path and import OP dictionaries
-sys.path.append(os.path.abspath(os.path.join("..", "..")))
+BASE_DIR = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(BASE_DIR))
 from config.config import OP_BASIN, OP_LOCATION, OP_WELL_CAT
 
 # Import drilling data
-PATH = os.path.join('..', '..', 'data', 'oil_drilling')
+DATA_PATH = BASE_DIR / "data" / "raw" / "pozos_operador.csv"
 df_op = (
     pd
     .read_csv(
-        PATH+'/pozos_operador.csv',
+        DATA_PATH,
         encoding='latin-1',
         skiprows=6,
         header=None,
@@ -46,6 +48,9 @@ df_op['ubicacion'] = df_op['ubicacion'].map(OP_LOCATION)
 df_op['categoria'] = df_op['categoria'].map(OP_WELL_CAT)
 
 # Write to csv
+OUTPUT_DIR = os.path.join("..", "..", "data", "intermediate")
+os.makedirs(OUTPUT_DIR, exist_ok=True)
 (
     df_op[['fecha', 'cuenca', 'ubicacion', 'categoria', 'pozos_perforados']]
-    .to_csv(os.path.join('..', '..', 'data', 'oil_intermediate', '02_drill_op.csv'), sep=',', index=False))
+    .to_csv(os.path.join(OUTPUT_DIR, '01_oil_op.csv'), sep=',', index=False)
+)
