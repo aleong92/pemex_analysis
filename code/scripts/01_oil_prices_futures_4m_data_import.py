@@ -8,12 +8,14 @@
 import pandas as pd
 import numpy as np
 import os
+from pathlib import Path
 
 # Define PATH and read West Texas Intermediate data
-PATH = os.path.join('..', '..', 'data', 'prices', 'futures_4m.csv')
+BASE_DIR = Path(__file__).resolve().parents[2]
+DATA_PATH = BASE_DIR / "data" / "raw" / "futures_4m.csv"
 df = (
     pd.read_csv(
-        filepath_or_buffer=PATH,
+        filepath_or_buffer=DATA_PATH,
         header=None,
         skiprows=5,
         names=['f4m_price'],
@@ -34,4 +36,6 @@ df['month'] = pd.date_range(start='1985-01-01', periods=len(df), freq='MS')
 df = df.query("month > '1999-12-01' and month < '2019-01-01'")
 
 # Save dataframe
-df.to_csv(os.path.join("..", "..", "data", "prices_intermediate", "01_f4m_prices.csv"), sep=',', index=False)
+OUTPUT_DIR = os.path.join("..", "..", "data", "intermediate")
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+df.to_csv(os.path.join(OUTPUT_DIR, "01_f4m_prices.csv"), sep=',', index=False)
