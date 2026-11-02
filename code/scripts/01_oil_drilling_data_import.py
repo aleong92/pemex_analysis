@@ -6,17 +6,18 @@
 #####################################################################
 # Libraries
 import pandas as pd
-import glob
 import os
 import sys
+from pathlib import Path
 
 # Append config to system path and import SIH dictionaries
-sys.path.append(os.path.abspath(os.path.join("..", "..")))
+BASE_DIR = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(BASE_DIR))
 from config.config import CNH_MAP_DTYPES, CNH_MAP_NAMES
 
 # Define PATH and get file names in the folder
-PATH = os.path.join('..', '..', 'data', 'oil_drilling')
-PERF_FILENAMES = [i for i in glob.glob(PATH+'/drill_*.{}'.format('csv'))]
+DATA_PATH = BASE_DIR / "data" / "raw"
+PERF_FILENAMES = sorted(DATA_PATH.glob("drill_*.csv"))
 
 # Load data and concat into a single dataframe
 df = (
@@ -56,4 +57,6 @@ print(f"""
 """)
 
 # Save dataframe
-df.to_csv(os.path.join("..", "..", "data", "oil_intermediate", "01_oil_drill.csv"), sep=',', index=False)
+OUTPUT_DIR = os.path.join("..", "..", "data", "intermediate")
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+df.to_csv(os.path.join(OUTPUT_DIR, "01_oil_drill.csv"), sep=',', index=False)

@@ -9,17 +9,19 @@ import pandas as pd
 import os
 import sys
 import numpy as np
+from pathlib import Path
 
 # Append config to system path and import SIH dictionaries
-sys.path.append(os.path.abspath(os.path.join("..", "..")))
+BASE_DIR = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(BASE_DIR))
 from config.config import CNH_HC_TYPE
 
 # Import production data
-PATH = os.path.join('..', '..', 'data', 'oil_intermediate')
+DATA_PATH = BASE_DIR / "data" / "intermediate"
 df = (
     pd
     .read_csv(
-        PATH+'/01_oil_prod.csv',
+        os.path.join(DATA_PATH, '01_oil_prod.csv'),
         usecols=['fecha', 'cuenca', 'nombre_pozo', 'petroleo_mbd']
     )
     .groupby(
@@ -38,7 +40,7 @@ df = (
     df
     .merge(
         pd.read_csv(
-            PATH+'/01_oil_drill.csv',
+            os.path.join(DATA_PATH, '01_oil_drill.csv'),
             usecols=['nombre_pozo', 'tipo_hidrocarburo', 'ubicacion']
         ),
         on='nombre_pozo',
@@ -68,10 +70,18 @@ df['oil_well'] = (
 # Filter oil wells between 1970 and 2018
 df = df.query("production_start >= '1970-01-01' and production_start < '2019-01-01'")
 df = df.query("oil_well == 1")
-print(f"Oil wells:    {df['oil_well'].sum():,.0f}")
+(
+    print(
+        f"""
+        WELLS IN INVENTORY:    {df['oil_well'].sum():,.0f}
+        """
+    )
+)
 
 # Identify preexistent wells
 df['preexistent_well'] = np.where(df['production_start'] < '2000-01-01', 1, 0)
 
 # Save dataframe
-df.to_csv(os.path.join("..", "..", "data", "oil_intermediate", "02_well_inventory.csv"), sep=',', index=False)
+OUTPUT_DIR = os.path.join("..", "..", "data", "intermediate")
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+df.to_csv(os.path.join(OUTPUT_DIR, "01_well_inventory.csv"), sep=',', index=False)
