@@ -7,20 +7,22 @@
 # Libraries
 import pandas as pd
 import os
+from pathlib import Path
 
 # Import price and cpi data and consolidate in single dataframe
-PATH = os.path.join('..', '..', 'data', 'prices_intermediate')
+BASE_DIR = Path(__file__).resolve().parents[2]
+DATA_PATH = BASE_DIR / "data" / "intermediate"
 df = (
     pd
     .merge(
-        pd.read_csv(PATH+'/01_wti_prices.csv'),
-        pd.read_csv(PATH+'/01_f4m_prices.csv'),
+        pd.read_csv(os.path.join(DATA_PATH, '01_wti_prices.csv')),
+        pd.read_csv(os.path.join(DATA_PATH, '01_f4m_prices.csv')),
         how='inner',
         on='month',
         validate='1:1'
     )
     .merge(
-        pd.read_csv(PATH+'/01_cpi_index.csv'),
+        pd.read_csv(os.path.join(DATA_PATH, '01_cpi_index.csv')),
         how='inner',
         on='month',
         validate='1:1'
@@ -32,4 +34,6 @@ df['spot_price_201812_usd'] = (df['wti_spot_price'] / df['cpi_base_201812']) * 1
 df['f4m_price_201812_usd'] = (df['f4m_price'] / df['cpi_base_201812']) * 100
 
 # Save dataframe
-df.to_csv(os.path.join("..", "..", "data", "prices_final", "02_oil_prices.csv"), sep=',', index=False)
+OUTPUT_DIR = os.path.join("..", "..", "data", "processed")
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+df.to_csv(os.path.join(OUTPUT_DIR, "02_oil_prices.csv"), sep=',', index=False)
