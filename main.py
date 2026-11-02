@@ -23,7 +23,8 @@ SCRIPTS = [
     '01_oil_production_data_import.py',
     '01_oil_drilling_data_import.py',
     '01_oil_well_inventory.py',
-    '02_oil_prices_dataframe.py'
+    '02_oil_prices_dataframe.py',
+    '02_oil_production_dataframe.py'
 ]
 
 # Execute
