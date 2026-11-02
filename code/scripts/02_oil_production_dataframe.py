@@ -7,13 +7,15 @@
 # Libraries
 import pandas as pd
 import os
+from pathlib import Path
 
 # Import production data
-PATH = os.path.join('..', '..', 'data', 'oil_intermediate')
+BASE_DIR = Path(__file__).resolve().parents[2]
+DATA_PATH = BASE_DIR / "data" / "intermediate"
 df = (
     pd
     .read_csv(
-        PATH+'/01_oil_prod.csv',
+        os.path.join(DATA_PATH,'01_oil_prod.csv'),
         usecols=['fecha', 'cuenca', 'nombre_pozo', 'petroleo_mbd']
     )
 )
@@ -22,7 +24,7 @@ df = (
 inv = (
     pd
     .read_csv(
-        PATH+'/02_well_inventory.csv',
+        os.path.join(DATA_PATH,'01_well_inventory.csv'),
         usecols=['nombre_pozo', 'production_start', 'preexistent_well']
     )
 )
@@ -35,4 +37,6 @@ df = df[df['nombre_pozo'].isin(PREEX_WELLS)].copy()
 df = df.query("fecha > '1999-12-01' and fecha < '2019-01-01'")
 
 # Save dataframe
-df.to_csv(os.path.join("..", "..", "data", "preexistent_wells", "03_preexistent_prod.csv"), sep=',', index=False)
+OUTPUT_DIR = os.path.join("..", "..", "data", "processed")
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+df.to_csv(os.path.join(OUTPUT_DIR, "02_oil_production.csv"), sep=',', index=False)
