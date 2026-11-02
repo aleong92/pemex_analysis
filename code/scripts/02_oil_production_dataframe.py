@@ -1,5 +1,5 @@
 #####################################################################
-# 03 - OIL PRODUCTION DATAFRAME
+# 02 - OIL PRODUCTION DATAFRAME
 # Author: Álvaro León G.
 # Undergrad Thesis
 # ITAM
@@ -16,7 +16,8 @@ df = (
     pd
     .read_csv(
         os.path.join(DATA_PATH,'01_oil_prod.csv'),
-        usecols=['fecha', 'cuenca', 'nombre_pozo', 'petroleo_mbd']
+        usecols=['fecha', 'cuenca', 'nombre_pozo', 'petroleo_mbd'],
+        parse_dates=['fecha']
     )
 )
 
@@ -39,4 +40,4 @@ df = df.query("fecha > '1999-12-01' and fecha < '2019-01-01'")
 # Save dataframe
 OUTPUT_DIR = os.path.join("..", "..", "data", "processed")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
-df.to_csv(os.path.join(OUTPUT_DIR, "02_oil_production.csv"), sep=',', index=False)
+df.to_csv(os.path.join(OUTPUT_DIR, "02_oil_production_per_well.csv"), sep=',', index=False)

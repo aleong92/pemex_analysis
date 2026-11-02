@@ -9,7 +9,7 @@ import pandas as pd
 import os
 from pathlib import Path
 
-# Import price and cpi data and consolidate in single dataframe
+# Consolidate price data in single dataframe
 BASE_DIR = Path(__file__).resolve().parents[2]
 DATA_PATH = BASE_DIR / "data" / "intermediate"
 df = (
