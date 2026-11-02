@@ -1,0 +1,29 @@
+# Ignore all files starting with .
+.*
+
+# Ignore all .csv files
+*.csv
+
+# Ignore shape and map files
+*.cpg
+*.dbf
+*.prj
+*.shp
+*.shx
+*.xml
+*.txt
+
+# Ignore all notebooks
+*.ipynb
+
+# Ignore all charts
+*.png
+
+# Ignore python files
+*.pyc
+
+# Ignore virtual environments
+/tesina/
+
+# Ignore pycache
+/config/__pycache__/
