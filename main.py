@@ -17,7 +17,10 @@ PATH = os.path.join(BASE_DIR, 'code', 'scripts')
 
 # List with scripts ordered by sequential execution
 SCRIPTS = [
-    '01_oil_prices_wti_data_import.py'
+    '01_oil_prices_wti_data_import.py',
+    '01_oil_prices_cpi_data_import.py',
+    '01_oil_prices_futures_4m_data_import.py',
+    '01_oil_prices_dataframe.py'
 ]
 
 # Execute
