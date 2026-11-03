@@ -8,21 +8,16 @@
 import pandas as pd
 import numpy as np
 import os
+from pathlib import Path
 
 # Import average production from preexistent wells and price data
-PATH = os.path.join('..', '..', 'data')
+BASE_DIR = Path(__file__).resolve().parents[2]
+DATA_PATH = BASE_DIR / "data" / "processed"
 df_reg = (
     pd
     .merge(
-        pd.read_csv(PATH+'/average_production/avg_oil_prod_all_wells.csv'),
-        pd.read_csv(PATH+'/average_production/avg_oil_prod_y5_wells.csv'),
-        how='inner',
-        on='fecha',
-        suffixes=('_all', '_y5'),
-        validate='1:1'
-    )
-    .merge(
-        pd.read_csv(PATH+'/prices_final/02_oil_prices.csv')[['month', 'spot_price_201812_usd', 'f4m_price_201812_usd']]
+        pd.read_csv(os.path.join(DATA_PATH, '02_oil_production_per_month.csv')),
+        pd.read_csv(os.path.join(DATA_PATH, '02_oil_prices.csv'))[['month', 'spot_price_201812_usd', 'f4m_price_201812_usd']]
         .rename(columns={'month':'fecha'}),
         how='inner',
         on='fecha',
@@ -62,4 +57,6 @@ REG_COLUMNS = [
     'l1_g',
     'time_effect'
 ]
-df_reg[REG_COLUMNS].to_csv(PATH+'/regressions/oil_prod_regs.csv', sep=',', index=False)
+OUTPUT_DIR = os.path.join("..", "..", "data", "modeling")
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+df_reg[REG_COLUMNS].to_csv(os.path.join(OUTPUT_DIR,'oil_production_regression_dataframe.csv'), sep=',', index=False)
