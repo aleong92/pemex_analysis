@@ -26,7 +26,9 @@ SCRIPTS = [
     '01_oil_well_inventory.py',
     '02_oil_prices_dataframe.py',
     '02_oil_production_dataframe.py',
-    '02_oil_drilling_dataframe.py'
+    '02_oil_production_monthly.py',
+    '02_oil_drilling_dataframe.py',
+    '03_oil_production_regression_dataframe.py'
 ]
 
 # Execute
