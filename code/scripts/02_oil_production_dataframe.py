@@ -17,7 +17,8 @@ df = (
     .read_csv(
         os.path.join(DATA_PATH,'01_oil_prod.csv'),
         usecols=['fecha', 'cuenca', 'nombre_pozo', 'petroleo_mbd'],
-        parse_dates=['fecha']
+        parse_dates=['fecha'],
+        date_format='%Y-%m-%d'
     )
 )
 

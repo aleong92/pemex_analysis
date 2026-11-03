@@ -7,13 +7,15 @@
 # Libraries
 import pandas as pd
 import os
+from pathlib import Path
 
 # Import production data
-PATH = os.path.join('..', '..', 'data', 'preexistent_wells', '03_preexistent_prod.csv')
+BASE_DIR = Path(__file__).resolve().parents[2]
+DATA_PATH = BASE_DIR / "data" / "processed"
 df = (
     pd
     .read_csv(
-        PATH,
+        os.path.join(DATA_PATH, '02_oil_production_per_well.csv'),
         dtype={
             'nombre_pozo': str,
             'cuenca': str,
@@ -21,9 +23,6 @@ df = (
         }
     )
 )
-
-# Parse date column
-df['fecha'] = pd.to_datetime(df['fecha'], format='%Y-%m-%d')
 
 # Change oil production from thousand barrels to barrels
 df['oil_prod'] = df['petroleo_mbd'] * 1000
@@ -42,17 +41,22 @@ y5_wells = (
     .tolist()
 )
 
-# Compute mean well production for both sets of wells
-AVG_PROD_PATH = os.path.join('..', '..', 'data', 'average_production')
-av_prod_all_wells = (
-    df
-    .groupby(['fecha'], as_index=False)
-    .agg(avg_oil_prod_bd=('oil_prod', 'mean'))
-    .to_csv(AVG_PROD_PATH+'/avg_oil_prod_all_wells.csv', sep=',', index=False)
+# Build a joint dataframe
+av_prod = (
+    pd
+    .merge(
+        df
+        .groupby(['fecha'], as_index=False)
+        .agg(avg_oil_prod_bd_all=('oil_prod', 'mean')),
+        df[df['nombre_pozo'].isin(y5_wells)]
+        .groupby(['fecha'], as_index=False)
+        .agg(avg_oil_prod_bd_y5=('oil_prod', 'mean')),
+        how='left',
+        on='fecha'
+    )
 )
-av_prod_y5_wells = (
-    df[df['nombre_pozo'].isin(y5_wells)]
-    .groupby(['fecha'], as_index=False)
-    .agg(avg_oil_prod_bd=('oil_prod', 'mean'))
-    .to_csv(AVG_PROD_PATH+'/avg_oil_prod_y5_wells.csv', sep=',', index=False)
-)
+
+# Save dataframe
+OUTPUT_DIR = os.path.join("..", "..", "data", "processed")
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+av_prod.to_csv(os.path.join(OUTPUT_DIR, "02_oil_production_per_month.csv"), sep=',', index=False)
