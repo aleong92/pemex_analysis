@@ -1,5 +1,5 @@
 #####################################################################
-# 05 - OIL PRODUCTION REGRESSIONS
+# 03 - OIL PRODUCTION REGRESSIONS
 # Author: Álvaro León G.
 # Undergrad Thesis
 # ITAM
@@ -22,8 +22,7 @@ df_reg = (
         how='inner',
         on='fecha',
         validate='1:1'
-    )
-)
+    ))
 
 # Estimate percentage difference between 4-month futures and spot prices
 df_reg['g_diff'] = ((df_reg['f4m_price_201812_usd'] / df_reg['spot_price_201812_usd']) - 1) * 100
