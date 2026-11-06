@@ -18,3 +18,5 @@ Since it's all public access data, feel free to download it from my personal bac
 * [Drilling](https://drive.google.com/drive/folders/13JIJ1LP_ds_Oac1uX1XQ9Mewj3oHajhf?usp=drive_link)
 * [Well location](https://drive.google.com/drive/folders/1SNiSJ7JBdl4rerNs3wIpNdXLkjRQ25tt?usp=drive_link)
 * [Prices](https://drive.google.com/drive/folders/1mSm180rzJTC4Fk0rr58jHuPf4HL9YnZx?usp=drive_link)
+
+All this is done on Python 3.11.5
